@@ -38,8 +38,7 @@ class BasePage:
             return True
         return False
 
-    def fill_alert_field(self):
-        # alert_field = self.browser.find_element_by_link_text("Basic Auth")
+    def fill_login_form(self):
         login_form = self.browser.switch_to.active_element
         login_form.send_keys("admin")
 

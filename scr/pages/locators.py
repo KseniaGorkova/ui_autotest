@@ -2,10 +2,11 @@ from selenium.webdriver.common.by import By
 
 
 class Locators:
-    buttonAddElement = (By.XPATH, "//button[@onclick='addElement()']")
-    buttonDeleteElement = (By.XPATH, "//button[@onclick='deleteElement()']")
+    button_add_element = (By.XPATH, "//button[@onclick='addElement()']")
+    button_delete_element = (By.XPATH, "//button[@onclick='deleteElement()']")
+    congratulations_text = (By.XPATH, "//*[@class='example']")
     checkbox = (By.XPATH, "//input[@type='checkbox']")
-    contextmenu = (By.XPATH, "//*[@id='hot-spot']")
+    context_menu = (By.XPATH, "//*[@id='hot-spot']")
     dropdown = (By.XPATH, "//*[@id='dropdown']")
     gallery = (By.XPATH, "//a[normalize-space()='Gallery']")
     element = (By.XPATH, "//div[@id='column-a']")

@@ -3,56 +3,70 @@ import requests
 from scr.pages.basePage import BasePage
 from scr.pages.locators import Locators
 import time
+import allure
 
 
-def page_open(browser, link):
-    page = BasePage(browser, link)
-    page.open()
-
-
-def test_add_delete_element(browser):
+@allure.testcase('Add and remove element')
+@allure.description('Check add and remove element')
+def test_add_and_remove_element(browser):
     link = 'http://the-internet.herokuapp.com/add_remove_elements/'
     page = BasePage(browser, link)
     page.open()
-    page.click_button(*Locators.buttonAddElement)
-    page.is_element_present(*Locators.buttonDeleteElement)
-    page.click_button(*Locators.buttonDeleteElement)
-    page.is_not_element_present(*Locators.buttonDeleteElement)
+    with allure.step("Check add button"):
+        page.click_button(*Locators.button_add_element)
+        page.is_element_present(*Locators.button_delete_element)
+    with allure.step("Check delete button"):
+        page.click_button(*Locators.button_delete_element)
+        page.is_not_element_present(*Locators.button_add_element)
 
 
+@allure.testcase('Basic Auth')
+@allure.description('Check basic auth')
 def test_basic_auth(browser):
     link = 'http://the-internet.herokuapp.com/basic_auth'
     page = BasePage(browser, link)
     page.open()
-    page.fill_alert_field()
+    with allure.step("Fill login form"):
+        page.fill_login_form()
 
 
+@allure.testcase('Broken Images')
+@allure.description('Find broken images')
 @pytest.mark.parametrize('image', ["asdf.jpg", "hjkl.jpg", "img/avatar-blank.jpg"])
 def test_broken_images(browser, image):
     link = f'http://the-internet.herokuapp.com/{image}'
     result = requests.get(link)
-    assert 200 == result.status_code
+    with allure.step("Check image is right"):
+        assert 200 == result.status_code
 
 
+@allure.testcase('Checkboxes')
+@allure.description('Check checkboxes')
 def test_checkboxes(browser):
     link = 'http://the-internet.herokuapp.com/checkboxes'
     page = BasePage(browser, link)
     page.open()
-    page.choose_checkbox(*Locators.checkbox)
+    with allure.step("Choose checkbox"):
+        page.choose_checkbox(*Locators.checkbox)
 
 
+@allure.testcase('Context Menu')
+@allure.description('Check context menu')
 def test_context_menu(browser):
     link = 'http://the-internet.herokuapp.com/context_menu'
     page = BasePage(browser, link)
     page.open()
-    page.click_context_menu(*Locators.contextmenu)
+    with allure.step("Click context menu"):
+        page.click_context_menu(*Locators.context_menu)
 
-
+@allure.testcase('Dropdown')
+@allure.description('Check dropdown')
 def test_dropdown(browser):
     link = 'http://the-internet.herokuapp.com/dropdown'
     page = BasePage(browser, link)
     page.open()
-    page.choose_dropdown(*Locators.dropdown, "Option 1")
+    with allure.step("Choose dropdown option 1"):
+        page.choose_dropdown(*Locators.dropdown, "Option 1")
 
 
 def test_disappearing_elements(browser):  # спорный кейс

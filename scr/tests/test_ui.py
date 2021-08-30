@@ -147,11 +147,13 @@ def test_input(browser):
     page.open()
     page.fill_input(*Locators.input_input, '5')
 
+
 def test_key_presses(browser):
     link = 'http://the-internet.herokuapp.com/key_presses'
     page = BasePage(browser, link)
     page.open()
     page.key_down(*Locators.key_main)
+
 
 def test_alert(browser):
     link = 'http://the-internet.herokuapp.com/javascript_alerts'
@@ -163,4 +165,3 @@ def test_alert(browser):
     page.simple_alert()
     page.click_button(*Locators.alert_prompt)
     page.alert_promt()
-

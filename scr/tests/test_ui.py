@@ -68,24 +68,25 @@ def test_dropdown(browser):
     with allure.step("Choose dropdown option 1"):
         page.choose_dropdown(*Locators.dropdown, "Option 1")
 
-@allure.testcase('Add and remove element')
-@allure.description('Check add and remove element')
-def test_disappearing_elements(browser):  # спорный кейс
+@allure.testcase('Disappearing Elements')
+@allure.description('Check disappearing element')
+def test_disappearing_elements(browser):  
     link = 'http://the-internet.herokuapp.com/disappearing_elements'
     page = BasePage(browser, link)
     page.open()
-    page.refresh_page(*Locators.gallery)
+    with allure.step("Refresh page"):
+        page.refresh_page(*Locators.gallery)
 
-@allure.testcase('Add and remove element')
-@allure.description('Check add and remove element')
+@allure.testcase('Drag and Drop')
+@allure.description('Check drag and drop')
 def test_drag_and_drop(browser):
     link = 'http://the-internet.herokuapp.com/drag_and_drop'
     page = BasePage(browser, link)
     page.open()
-    page.drag_and_drop(*Locators.element, *Locators.destination)
+    with allure.step("Check drag and drop"):
+        page.drag_and_drop(*Locators.element, *Locators.destination)
 
-@allure.testcase('Add and remove element')
-@allure.description('Check add and remove element')
+@allure.testcase('Dynamic Controls')
 def test_dinamic_control(browser):
     link = 'http://the-internet.herokuapp.com/dynamic_controls'
     page = BasePage(browser, link)
@@ -100,8 +101,7 @@ def test_dinamic_control(browser):
     page.wait_element_to_be_active(*Locators.input_dis)
     page.fill_input(*Locators.input_dis, "привет")
 
-@allure.testcase('Add and remove element')
-@allure.description('Check add and remove element')
+@allure.testcase('Dynamic Loading')
 def test_dynamic_loading(browser):
     link = 'http://the-internet.herokuapp.com/dynamic_loading/1'
     page = BasePage(browser, link)
@@ -109,16 +109,14 @@ def test_dynamic_loading(browser):
     page.click_button(*Locators.button_start)
     page.wait_visible_element_is_located(*Locators.text_hello)
 
-@allure.testcase('Add and remove element')
-@allure.description('Check add and remove element')
+@allure.testcase('Entry Ad')
 def test_enrtry_add(browser):
     link = 'http://the-internet.herokuapp.com/entry_ad'
     page = BasePage(browser, link)
     page.open()
     page.is_element_present(*Locators.modal_window)  # разобраться
 
-@allure.testcase('Add and remove element')
-@allure.description('Check add and remove element')
+@allure.testcase('Exit Intent')
 def test_exit_intent(browser):
     link = 'http://the-internet.herokuapp.com/exit_intent'
     page = BasePage(browser, link)
@@ -126,8 +124,7 @@ def test_exit_intent(browser):
     page.go_to_outside()
     page.is_element_present(*Locators.modal_window)
 
-@allure.testcase('Add and remove element')
-@allure.description('Check add and remove element')
+@allure.testcase('File Upload')
 def test_file_upload(browser):
     link = 'http://the-internet.herokuapp.com/upload'
     page = BasePage(browser, link)
@@ -136,8 +133,7 @@ def test_file_upload(browser):
     page.click_button(*Locators.button_upload)
     page.is_element_present(*Locators.message_file_upload)
 
-@allure.testcase('Add and remove element')
-@allure.description('Check add and remove element')
+@allure.testcase('Floating Menu')
 def test_floating_menu(browser):
     link = 'http://the-internet.herokuapp.com/floating_menu'
     page = BasePage(browser, link)
@@ -146,8 +142,7 @@ def test_floating_menu(browser):
     # time.sleep(10)
     page.wait_visible_element_is_located(*Locators.part_menu)
 
-@allure.testcase('Add and remove element')
-@allure.description('Check add and remove element')
+@allure.testcase('Horizontal Slider')
 def test_horizontal_slider(browser):
     link = 'http://the-internet.herokuapp.com/horizontal_slider'
     page = BasePage(browser, link)
@@ -155,33 +150,29 @@ def test_horizontal_slider(browser):
     page.horizontal_slider(*Locators.slider, *Locators.number_slider)
     time.sleep(5)
 
-@allure.testcase('Add and remove element')
-@allure.description('Check add and remove element')
-def test_hover(browser):  # пофикить локаторы
+@allure.testcase('Hovers')
+def test_hover(browser):  # пофикcить локаторы
     link = 'http://the-internet.herokuapp.com/hovers'
     page = BasePage(browser, link)
     page.open()
     page.element_hover(*Locators.number_slider)
     page.wait_visible_element_is_located(*Locators.image_one)
 
-@allure.testcase('Add and remove element')
-@allure.description('Check add and remove element')
+@allure.testcase('Inputs')
 def test_input(browser):
     link = 'http://the-internet.herokuapp.com/inputs'
     page = BasePage(browser, link)
     page.open()
     page.fill_input(*Locators.input_input, '5')
 
-@allure.testcase('Add and remove element')
-@allure.description('Check add and remove element')
+@allure.testcase('Key Presses')
 def test_key_presses(browser):
     link = 'http://the-internet.herokuapp.com/key_presses'
     page = BasePage(browser, link)
     page.open()
     page.key_down(*Locators.key_main)
 
-@allure.testcase('Add and remove element')
-@allure.description('Check add and remove element')
+@allure.testcase('JavaScript Alerts')
 def test_alert(browser):
     link = 'http://the-internet.herokuapp.com/javascript_alerts'
     page = BasePage(browser, link)

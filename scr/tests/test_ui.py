@@ -92,8 +92,6 @@ def test_dynamic_loading(browser):
     page.wait_visible_element_is_located(*Locators.text_hello)
 
 
-# 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
-
 def test_enrtry_add(browser):
     link = 'http://the-internet.herokuapp.com/entry_ad'
     page = BasePage(browser, link)

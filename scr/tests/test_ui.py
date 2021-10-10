@@ -120,7 +120,7 @@ def test_enrtry_add(browser):
     link = 'http://the-internet.herokuapp.com/entry_ad'
     page = BasePage(browser, link)
     page.open()
-    page.is_element_present(*Locators.modal_window)  # разобраться
+    page.is_element_present(*Locators.modal_window)  
 
 
 @allure.testcase('Exit Intent')

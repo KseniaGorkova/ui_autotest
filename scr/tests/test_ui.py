@@ -162,7 +162,7 @@ def test_horizontal_slider(browser):
 
 
 @allure.testcase('Hovers')
-def test_hover(browser):  # пофикcить локаторы
+def test_hover(browser):  
     link = 'http://the-internet.herokuapp.com/hovers'
     page = BasePage(browser, link)
     page.open()

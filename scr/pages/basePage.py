@@ -6,6 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import os
 import allure
+import time
 
 
 class BasePage:
@@ -39,8 +40,15 @@ class BasePage:
         return False
 
     def fill_login_form(self):
-        login_form = self.browser.switch_to.active_element
+        login_form = self.browser.switch_to.alert
         login_form.send_keys("admin")
+        login_form.send_keys("admin")
+        login_form.accept()
+        time.sleep(10)
+
+    def check_expected_test(self,how,what,expected_text):
+        actual_text = self.browser.find_element(how, what).text
+        assert actual_text == expected_text,f"{actual_text} != {expected_text}"
 
     def choose_checkbox(self, how, what):
         checkbox = self.browser.find_element(how, what)
@@ -50,9 +58,7 @@ class BasePage:
         right_click = ActionChains(self.browser)
         context_menu = self.browser.find_element(how, what)
         right_click.context_click(context_menu).perform()
-        alert = self.browser.switch_to.alert
-        assert "You selected a context menu" in alert.text
-        alert.accept()
+
 
     def choose_dropdown(self, how, what, text):
         drop_down = Select(self.browser.find_element(how, what))
@@ -102,25 +108,21 @@ class BasePage:
     def scroll(self):
         self.browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
-    def horizontal_slider(self, how, what, how1, what1):
+    def horizontal_slider(self, how, what):
         slider = self.browser.find_element(how, what)
-        number_slider = self.browser.find_element(how1, what1)
         action = ActionChains(self.browser)
         action.click_and_hold(slider).move_by_offset(60, 0).release().perform()
-        number = '5'
-        assert number in number_slider.text
+
 
     def element_hover(self, how, what):
         element = self.browser.find_element(how, what)
         action = ActionChains(self.browser)
         action.click_and_hold(element).move_to_element(element).perform()
 
-    def key_down(self, how, what):
+    def key_down(self):
         action = ActionChains(self.browser)
         action.key_down(Keys.ENTER).perform()
-        element = self.browser.find_element(how, what)
-        button = 'ENTER'
-        assert button in element.text
+
 
     def simple_alert(self):
         alertfield = self.browser.switch_to.alert

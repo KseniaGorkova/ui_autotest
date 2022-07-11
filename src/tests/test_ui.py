@@ -1,7 +1,7 @@
 import pytest
 import requests
-from scr.pages.basePage import BasePage
-from scr.pages.locators import Locators
+from src.pages.basePage import BasePage
+from src.pages.locators import Locators
 import time
 import allure
 
